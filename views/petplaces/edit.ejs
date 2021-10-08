@@ -1,0 +1,52 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+	<h1 class="text-center">Редактировать информацию</h1>
+	<div class="col-6 offset-3">
+		<form action="/petplaces/<%= petplace._id %>?_method=PUT " method="POST" class="validatedform" novalidate enctype="multipart/form-data">
+			<div class="mb-3">
+				<label class="form-label" for="title">Имя</label>
+				<input class="form-control" type="text" name="petplace[title]" id="title" value="<%= petplace.title %>" required />
+				<div class="valid-feedback">Looks good!</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="location">Местонахождение</label>
+				<input class="form-control" type="text" name="petplace[location]" id="location" value="<%= petplace.location %>" required />
+				<div class="valid-feedback">Looks good!</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="price">Цена</label>
+				<div class="input-group">
+					<span class="input-group-text" id="price-label">₽</span>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="0.00"
+						aria-label="price"
+						aria-describedby="price-label"
+						id="price"
+						name="petplace[price]"
+						value="<%= petplace.price %>"
+						required
+					/>
+					<div class="valid-feedback">Looks good!</div>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="description">Описание</label>
+				<textarea class="form-control" type="text" name="petplace[description]" id="description" required><%= petplace.description %> </textarea>
+				<div class="valid-feedback">Looks good!</div>
+			</div>
+			<div class="mb-3">
+				<label for="image" class="form-label">Выбрать изображения</label>
+				<input class="form-control" type="file" id="image" name="image" multiple />
+			</div>
+			<div class="mb-3">
+				<!-- here you can delete uploaded images -->
+			</div>
+			<div class="mb-3">
+				<button class="btn btn-info">Обновить</button>
+			</div>
+		</form>
+		<a class="btn btn-warning" href="/petplace/<%= petplace._id %> ">Назад</a>
+	</div>
+</div>
