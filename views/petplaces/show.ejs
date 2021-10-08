@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/stars.css" />
+<div class="row">
+	<div class="col-6">
+		<div id="petplaceCarousel" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-inner">
+				<!-- here will be an image -->
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#petplaceCarousel" data-bs-slide="prev">
+			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			  <span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#petplaceCarousel" data-bs-slide="next">
+			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			  <span class="visually-hidden">Next</span>
+			</button>
+		  </div>
+		<div class="card mb-3">
+			<div class="card-body">
+				<h5 class="card-title"><%= petplace.title %></h5>
+				<p class="card-text"><%= petplace.description %></p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item text-muted"><%= petplace.phone %></li>
+				<li class="list-group-item text-muted"><%= petplace.location %></li>
+				<li class="list-group-item">Р <%= petplace.price %>/сутки</li>
+			</ul>
+			<div class="card-body">
+				<a class="card-link btn btn-warning" href="/petplaces/<%= petplace._id %>/edit ">Редактировать</a>
+				<form action="/petplaces/<%= petplace._id %>?_method=DELETE" method="POST" class="d-inline">
+					<button class="btn btn-danger">Удалить</button>
+				</form>
+			</div>
+			<div class="card-footer text-muted">2 дня назад</div>
+		</div>
+	</div>
+	<div class="col-6">
+		<!-- here will be reviews -->
+	</div>
+</div>

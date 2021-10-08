@@ -1,0 +1,8 @@
+<% layout('layouts/boilerplate') %>
+<h1 class='container-fluid mb-5'>Зооняни</h1>
+
+<ul class='ps-0' id='list-of-petplaces'>
+	<% for (let petplace of petplaces){%>
+        <li><a href="petplaces/<%= petplace.id %>"><%= petplace.title %></a></li>
+    <% } %> 
+</ul>
