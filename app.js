@@ -11,6 +11,7 @@ const petplaceRoutes = require('./routes/petplaces')
 
 
 const dbUrl = process.env.DB_URL
+const secret = process.env.SECRET
 
 mongoose.connect(dbUrl, {
     // options to turn off deprecation warnings
