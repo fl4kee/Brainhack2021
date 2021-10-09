@@ -8,11 +8,16 @@ module.exports.index = async (req, res) => {
 }
 
 module.exports.getFilteredJsonPetplaces = async (req, res) => {
-    let {location} = req.body
-    console.log(req.body)
+    let {location, category} = req.body
+    console.log(location, category)
     let petplaces = ''
-    if(!location){
+    
+    if(!location && !category){
         petplaces = await Petplace.find({})
+    }else if (!location && category){
+        petplaces = await Petplace.find({category: category})
+    }else if(location && category){
+        petplaces = await Petplace.find({location: { $regex: '.*' + location + '.*'}, category: category})
     }else{
         petplaces = await Petplace.find({location: { $regex: '.*' + location + '.*'}})
     }
@@ -60,7 +65,6 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updatePetplace = async (req, res, next) => {
     const { id } = req.params;
-    console.log(req.body)
     const images = req.files.map(f => ({filename: f.filename, url: f.path}))
     const petplace = await Petplace.findByIdAndUpdate(id, { ...req.body.petplace });
     petplace.images.push(...images)

@@ -19,8 +19,8 @@ const MongoStore = require('connect-mongo');
 
 
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp'
-const secret = process.env.SECRET || 'thisshouldbeabettersecret'
+const dbUrl = process.env.DB_URL 
+const secret = process.env.SECRET
 
 mongoose.connect(dbUrl, {
     // options to turn off deprecation warnings

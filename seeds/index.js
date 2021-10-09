@@ -23,15 +23,15 @@ const sample = array => array[Math.floor(Math.random() * array.length)]
 const seedDB = async() => {
     await Petplace.deleteMany({})
     urls_list = []
-    categories_list = ['Зооняня', 'Садик', 'Грумминг', 'Кинолог']
-    for(let i = 0; i < 20; i++){
+    categories_list = ['Зооняня', 'Садик', 'Грумминг', 'Кинолог', 'Передержка']
+    for(let i = 0; i < 40; i++){
         result = await axios({
         method: 'get',
         url: 'https://loremflickr.com/320/240'
         })
         urls_list.push(result.request._redirectable._currentUrl)
     }
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 20; i++){
         const random10 = Math.floor(Math.random() * 10)
         const price = Math.floor(Math.random() * 10000) + 500
         image_index = 0
@@ -39,7 +39,7 @@ const seedDB = async() => {
             author: '616148e0106bc6b9af40d472',
             location: `${cities[random10].name}, ${cities[random10].subject}`,
             title: `${sample(colors)} ${sample(animals)}`,
-            category: categories_list[Math.floor(Math.random() * 3)],
+            category: categories_list[Math.floor(Math.random() * 4)],
             phone: `+7-${Math.floor(Math.random() * 999)}-${Math.floor(Math.random() * 999)}-${Math.floor(Math.random() * 8999) + 1000}`,
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero eius, illo tempore inventore adipisci repudiandae, nesciunt accusamus iste quam voluptatem atque officia dolorem dignissimos consequuntur sequi numquam delectus. Velit, natus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero eius, illo tempore inventore adipisci repudiandae, nesciunt accusamus iste quam voluptatem atque officia dolorem dignissimos consequuntur sequi numquam delectus. Velit, natus!',
             price,
