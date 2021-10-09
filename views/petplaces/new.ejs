@@ -36,6 +36,39 @@
 					<div class="valid-feedback">Looks good!</div>
 				</div>
 			</div>
+            <div class="mb-3">
+				<label class="form-label" for="category">Телефон</label>
+				<div class="input-group">
+					<input
+						type="text"
+						class="form-control"
+						placeholder="0.00"
+						aria-label="phone"
+						aria-describedby="phone-label"
+						id="phone"
+						name="petplace[phone]"
+						value="<%= petplace.phone %>"
+						required
+					/>
+					<div class="valid-feedback">Looks good!</div>
+				</div>
+			<div class="mb-3">
+				<label class="form-label" for="category">Категория</label>
+				<div class="input-group">
+					<input
+						type="text"
+						class="form-control"
+						placeholder="0.00"
+						aria-label="category"
+						aria-describedby="category-label"
+						id="category"
+						name="petplace[category]"
+						value="<%= petplace.category %>"
+						required
+					/>
+					<div class="valid-feedback">Looks good!</div>
+				</div>
+			</div>
 			<div class="mb-3">
 				<label class="form-label" for="description">Описание</label>
 				<textarea class="form-control" type="text" name="petplace[description]" id="description" required></textarea>

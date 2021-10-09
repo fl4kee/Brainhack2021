@@ -1,11 +1,16 @@
 <% layout('layouts/boilerplate') %>
-<link rel="stylesheet" href="/stylesheets/stars.css" />
+<link rel="stylesheet" href="/css/stars.css" />
 <div class="row">
 	<div class="col-6">
 		<div id="petplaceCarousel" class="carousel slide" data-bs-ride="carousel">
 			<div class="carousel-inner">
-				<!-- here will be an image -->
+				<% petplace.images.forEach((image, i) => {%>
+					<div class="carousel-item <%= i === 0 ? 'active' : '' %> ">
+						<img src="<%= image.url %>" class="d-block w-100" alt="...">
+					</div>
+				<% }) %> 
 			</div>
+			<% if(petplace.images.length > 1) {%> 
 			<button class="carousel-control-prev" type="button" data-bs-target="#petplaceCarousel" data-bs-slide="prev">
 			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			  <span class="visually-hidden">Previous</span>
@@ -14,6 +19,7 @@
 			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
 			  <span class="visually-hidden">Next</span>
 			</button>
+			<% } %> 
 		  </div>
 		<div class="card mb-3">
 			<div class="card-body">
@@ -21,20 +27,64 @@
 				<p class="card-text"><%= petplace.description %></p>
 			</div>
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item text-muted"><%= petplace.phone %></li>
 				<li class="list-group-item text-muted"><%= petplace.location %></li>
-				<li class="list-group-item">Р <%= petplace.price %>/сутки</li>
+				<li class="list-group-item"><%= petplace.category %> : <%= petplace.author.username %></li>
+				<li class="list-group-item"><%= petplace.phone %></li>
+				<li class="list-group-item">$<%= petplace.price %>/ночь</li>
 			</ul>
+			<% if(currentUser && petplace.author.equals(currentUser)) {%>
 			<div class="card-body">
 				<a class="card-link btn btn-warning" href="/petplaces/<%= petplace._id %>/edit ">Редактировать</a>
 				<form action="/petplaces/<%= petplace._id %>?_method=DELETE" method="POST" class="d-inline">
 					<button class="btn btn-danger">Удалить</button>
 				</form>
 			</div>
+			<% } %>
 			<div class="card-footer text-muted">2 дня назад</div>
 		</div>
 	</div>
 	<div class="col-6">
-		<!-- here will be reviews -->
+		<% if(currentUser) {%>
+		<h2>Оставить отзыв</h2>
+		<form method="POST" action="/petplaces/<%= petplace._id%>/reviews" class="mb-3 validated-form" novalidate>
+			<div class="mb-3">
+				<fieldset class="starability-basic">
+					<legend>Рейтинг:</legend>
+					<input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+					<input type="radio" id="first-rate1" name="review[rating]" value="1" />
+					<label for="first-rate1" title="Terrible">1 звезда</label>
+					<input type="radio" id="first-rate2" name="review[rating]" value="2" />
+					<label for="first-rate2" title="Not good">2 звезды</label>
+					<input type="radio" id="first-rate3" name="review[rating]" value="3" />
+					<label for="first-rate3" title="Average">3 звезды</label>
+					<input type="radio" id="first-rate4" name="review[rating]" value="4" />
+					<label for="first-rate4" title="Very good">4 звезды</label>
+					<input type="radio" id="first-rate5" name="review[rating]" value="5" />
+					<label for="first-rate5" title="Amazing">5 звезды</label>
+				</fieldset>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label" for="body">Текст отзыва</label>
+				<textarea name="review[body]" id="body" cols="30" rows="3" class="form-control" required></textarea>
+				<div class="valid-feedback">Looks good!</div>
+			</div>
+			<button class="btn btn-success">Подтвердить</button>
+		</form>
+
+		<% } %> <% for(let review of petplace.reviews) {%>
+		<div class="card mb-3">
+			<div class="card-body">
+				<h5 class="card-title"><%= review.author.username %></h5>
+				<p class="starability-result" data-rating="<%= review.rating %>">Рейтинг: <%= review.rating %> stars</p>
+				<p class="card-text">Отзыв: <%= review.body %></p>
+				<% if(currentUser && review.author.equals(currentUser)) {%>
+				<form method="POST" action="/petplaces/<%= petplace._id %>/reviews/<%= review._id %>?_method=DELETE">
+					<button class="btn btn-sm btn-danger" type="submit">Удалить</button>
+				</form>
+				<% } %>
+			</div>
+		</div>
+		<% } %>
 	</div>
 </div>

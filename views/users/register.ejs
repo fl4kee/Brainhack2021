@@ -1,0 +1,38 @@
+<% layout('layouts/boilerplate') %>
+<h1>Регистрация</h1>
+<form action="/register" method="POST" class="validated-form" novalidate>
+	<div class="mb-3">
+		<label class="form-label" for="image"> Имя пользователя </label>
+		<input
+			class="form-control"
+			type="text"
+			name="username"
+			id="username"
+			required
+		/>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
+	<div class="mb-3">
+		<label class="form-label" for="image"> Электронная почта </label>
+		<input
+			class="form-control"
+			type="email"
+			name="email"
+			id="email"
+			required
+		/>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
+	<div class="mb-3">
+		<label class="form-label" for="image"> Пароль </label>
+		<input
+			class="form-control"
+			type="password"
+			name="password"
+			id="password"
+			required
+		/>
+		<div class="valid-feedback">Looks good!</div>
+	</div>
+    <button class="btn btn-success">Зарегистрироваться</button>
+</form>

@@ -2,7 +2,7 @@
 <div class="row">
 	<h1 class="text-center">Редактировать информацию</h1>
 	<div class="col-6 offset-3">
-		<form action="/petplaces/<%= petplace._id %>?_method=PUT " method="POST" class="validatedform" novalidate enctype="multipart/form-data">
+		<form action="/Petplaces/<%= petplace._id %>?_method=PUT " method="POST" class="validatedform" novalidate enctype="multipart/form-data">
 			<div class="mb-3">
 				<label class="form-label" for="title">Имя</label>
 				<input class="form-control" type="text" name="petplace[title]" id="title" value="<%= petplace.title %>" required />
@@ -30,6 +30,38 @@
 					/>
 					<div class="valid-feedback">Looks good!</div>
 				</div>
+			<div class="mb-3">
+				<label class="form-label" for="category">Телефон</label>
+				<div class="input-group">
+					<input
+						type="text"
+						class="form-control"
+						placeholder="0.00"
+						aria-label="phone"
+						aria-describedby="phone-label"
+						id="phone"
+						name="petplace[phone]"
+						value="<%= petplace.phone %>"
+						required
+					/>
+					<div class="valid-feedback">Looks good!</div>
+				</div>
+			<div class="mb-3">
+				<label class="form-label" for="category">Категория</label>
+				<div class="input-group">
+					<input
+						type="text"
+						class="form-control"
+						placeholder="0.00"
+						aria-label="category"
+						aria-describedby="category-label"
+						id="category"
+						name="petplace[category]"
+						value="<%= petplace.category %>"
+						required
+					/>
+					<div class="valid-feedback">Looks good!</div>
+				</div>
 			</div>
 			<div class="mb-3">
 				<label class="form-label" for="description">Описание</label>
@@ -41,7 +73,13 @@
 				<input class="form-control" type="file" id="image" name="image" multiple />
 			</div>
 			<div class="mb-3">
-				<!-- here you can delete uploaded images -->
+				<% petplace.images.forEach(function(image, i){ %>
+					<img src="<%= image.thumbnail %>" class="img-thumbnail" alt="">
+					<div class="form-check-inline">
+						<input type="checkbox" name="deleteImages[]" id="<%= i %>" value="<%= image.filename %>">
+					</div>
+					<label for="<%= i %>">Удалить?</label>
+				<% }) %>  
 			</div>
 			<div class="mb-3">
 				<button class="btn btn-info">Обновить</button>
