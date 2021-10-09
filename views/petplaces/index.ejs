@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') %>
-<h1 class='container-fluid mb-5'>Зооняни</h1>
+<h1 class='container-fluid mb-5' id="mainHeader">Зооняни</h1>
 <div class="container col-6 mb-4 d-flex justify-content-center">
 	<form class="input-group my-2 my-lg-0" id="searchForm" method="POST" action='#'>
 		<input class="form-control col-2 mr-sm-2" type="search" placeholder="Введите свой город" aria-label="Search" name="location">
@@ -22,3 +22,6 @@
 <div class="d-flex justify-content-center mb-3" id='pagination-wrapper'>
 	
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/javascripts/script.js"></script>
+

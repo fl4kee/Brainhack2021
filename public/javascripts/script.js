@@ -1,11 +1,15 @@
 const searchForm = document.querySelector('#searchForm')
+const searchFormHome = document.querySelector('#searchFormHome')
 let ul = document.querySelector('#list-of-petplaces')
 
 let state = {
     'page': 1,
     'rows': 8,
 }
+
+
 searchForm.addEventListener('submit', async (e) => {
+    
     state.page = 1
     state.rows = 8
     try{
@@ -21,7 +25,6 @@ searchForm.addEventListener('submit', async (e) => {
                 "Content-Type": "application/json"
             }
         })
-        console.log('Axios result in event listener: ', result.data)
         let petplaces = result.data
         showElements(petplaces)
     }
@@ -33,16 +36,10 @@ searchForm.addEventListener('submit', async (e) => {
 
 const pagination = (result, page, elements) => {
     
-    console.log(result , ' This data in pagination')
     let trimStart = (page - 1) * elements
-    console.log('Trimstart: ', trimStart)
     let trimEnd = trimStart + elements
-    console.log('Trimend: ', trimEnd)
     let trimmedData = result.slice(trimStart, trimEnd)
-    console.log('trimmedData: ', trimmedData)
     let pages = Math.ceil(result.length / elements)
-    console.log('pages: ', pages)
-    console.log('HERE IS TRIMMED DATA ', trimmedData)
     return {
         "querySet": trimmedData,
         "pages": pages
@@ -55,7 +52,7 @@ const pageButtons = (pages, data) => {
     wrapper.innerHTML = ""
 
     for (let page = 1; page <= pages; page++) {
-        wrapper.innerHTML += `<button value=${page} class="page-link">${page}</button>`
+        wrapper.innerHTML += `<a href="#mainHeader"><button value=${page} class="page-link">${page}</button></a>`
     }
 
     const page = document.querySelectorAll('.page-link')
@@ -68,10 +65,9 @@ const pageButtons = (pages, data) => {
 }
 
 const showElements = (data) => {
-    console.log(data, ' in show elements')
     let result = pagination(data, state.page, state.rows)
     if (result.querySet.length == 0) {
-        alert("Нет подходящих элементов")
+        alert("Нет подходящих зоонянь")
     } else {
         ul.innerHTML = ""
         for (let el of result.querySet) {
@@ -100,7 +96,6 @@ const showElements = (data) => {
             ul.appendChild(newEntry)
         }
         pageButtons(result.pages, data)
-        console.log(data.length + ' in pagination func')
     }
 }
 

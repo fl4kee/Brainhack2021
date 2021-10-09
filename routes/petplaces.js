@@ -12,6 +12,10 @@ router.route('/')
       .get(catchAsync(petplaces.index))
       .post(isLoggedIn, upload.array('image'), validatePetplace, catchAsync(petplaces.createPetplace))
 
+
+router.route('/search')
+      .post(catchAsync(petplaces.indexSearch), catchAsync(petplaces.getFilteredJsonPetplaces))
+
 router.get('/new', isLoggedIn, petplaces.renderNewForm);
 
 router.route('/api/filter')

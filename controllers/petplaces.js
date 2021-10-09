@@ -3,9 +3,16 @@ const Petplace = require('../models/petplace')
 const {cloudinary} = require("../cloudinary")
 
 module.exports.index = async (req, res) => {
-    petplaces = await Petplace.find({})
-    res.render('petplaces/index', {petplaces});
+    res.render('petplaces/index');
 }
+
+// module.exports.indexSearch = async(req, res) => {
+//     let {location, category} = req.body
+//     console.log(req.protocol + '://' + req.get('host') + req.originalUrl)
+//     console.log(location, category)
+//     res.render('petplaces/index')
+    
+// }
 
 module.exports.getFilteredJsonPetplaces = async (req, res) => {
     let {location, category} = req.body
