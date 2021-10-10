@@ -12,7 +12,7 @@ def find_suitable(collection, elements: dict):
 def pet_places_collection():
     """Function to connect with Petplaces DB and get """
     # Creating the client
-    client = pymongo.MongoClient('mongodb+srv://fl4kee:zWTHDG8j8rA6RfB4'
+    client = pymongo.MongoClient('mongodb+srv://fl4kee:<password>'
                                  '@cluster0.egogm.mongodb.net/myFirstDa'
                                  'tabase?retryWrites=true&w=majority')
     # Connecting to our database
