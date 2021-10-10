@@ -48,19 +48,14 @@
 				</div>
 			<div class="mb-3">
 				<label class="form-label" for="category">Категория</label>
-				<div class="input-group">
-					<input
-						type="text"
-						class="form-control"
-						placeholder="0.00"
-						aria-label="category"
-						aria-describedby="category-label"
-						id="category"
-						name="petplace[category]"
-						value="<%= petplace.category %>"
-						required
-					/>
-					<div class="valid-feedback">Looks good!</div>
+                    <select class="form-select" aria-label="Default select example" name="petplace[category]" id="category"> 
+                        <option selected value="">Выберите специальность</option>
+                        <option value="Зооняня">Зооняня</option>
+                        <option value="Садик">Садик</option>
+                        <option value="203">Грумминг</option>
+                        <option value="Кинолог">Кинолог</option>
+                        <option value="Передержка">Передержка</option>
+                    </select>
 				</div>
 			</div>
 			<div class="mb-3">
