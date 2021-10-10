@@ -7,6 +7,9 @@ let state = {
     'rows': 8,
 }
 
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
 searchForm.addEventListener('submit', async (e) => {
     
@@ -15,7 +18,7 @@ searchForm.addEventListener('submit', async (e) => {
     try{
         e.preventDefault()
         const url = location.protocol + '//' + location.host + '/petplaces/api/filter'
-        const city = searchForm.elements.location.value
+        const city = capitalize(searchForm.elements.location.value.replace(/\s+/g, ''))
         const category = searchForm.elements.category.value  
         result = await axios.post(url, {
             location: city,
