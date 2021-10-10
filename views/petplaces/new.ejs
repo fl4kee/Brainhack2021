@@ -13,7 +13,6 @@
 				<input class="form-control" type="text" name="petplace[location]" id="location" required />
 				<div class="valid-feedback">Looks good!</div>
 			</div>
-			<input type="file" name="image" id="image" multiple>
 			<!-- <div class="mb-3">
 				<label class="form-label" for="image">Image Url</label>
 				<input class="form-control" type="text" name="petplace[image]" id="image" required />
@@ -26,7 +25,7 @@
 					<input
 						type="text"
 						class="form-control"
-						placeholder="0.00"
+						placeholder="Впишите 0 если готовы помочь бесплатно :)"
 						aria-label="price"
 						aria-describedby="price-label"
 						id="price"
@@ -54,7 +53,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="category">Категория</label>
                         <select class="form-select" aria-label="Default select example" name="petplace[category]" id="category"> 
-                            <option selected value="">Выберите специальность</option>
+                            <option selected value="Специальность не выбрана">Выберите специальность</option>
                             <option value="Зооняня">Зооняня</option>
                             <option value="Садик">Садик</option>
                             <option value="Грумминг">Грумминг</option>
@@ -65,8 +64,12 @@
                 </div>
 			<div class="mb-3">
 				<label class="form-label" for="description">Описание</label>
-				<textarea class="form-control" type="text" name="petplace[description]" id="description" required></textarea>
+				<textarea class="form-control" type="text" name="petplace[description]" id="description" placeholder="Расскажите немного о себе" required></textarea>
 				<div class="valid-feedback">Looks good!</div>
+			</div>
+            <div class="mb-3">
+				<label for="image" class="form-label">Выбрать изображения: </label>
+				<input class="form-control" type="file" id="image" name="image" multiple />
 			</div>
 			<div class="mb-3">
 				<button class="btn btn-success">Стать зооняней</button>

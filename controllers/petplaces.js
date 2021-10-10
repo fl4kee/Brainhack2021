@@ -40,7 +40,7 @@ module.exports.createPetplace = async (req, res, next) => {
     petplace.images = req.files.map(f => ({url: f.path, filename: f.filename}))
     petplace.author = req.user._id
     await petplace.save();
-    req.flash('success', 'Поздравляю, вы зооняня!')
+    req.flash('success', 'Объявление размещено!')
     res.redirect(`/petplaces/${petplace._id}`);
 
 }

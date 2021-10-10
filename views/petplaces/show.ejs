@@ -30,7 +30,7 @@
 				<li class="list-group-item text-muted"><%= petplace.location %></li>
 				<li class="list-group-item"><%= petplace.category %> : <%= petplace.author.username %></li>
 				<li class="list-group-item"><%= petplace.phone %></li>
-				<li class="list-group-item">Р<%= petplace.price %>/ночь</li>
+				<li class="list-group-item"><%= petplace.price %> Р</li>
 			</ul>
 			<% if(currentUser && petplace.author.equals(currentUser)) {%>
 			<div class="card-body">
